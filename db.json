@@ -1,0 +1,11 @@
+{
+  "projects": [
+    { "id": 1, "name": "Dự án 1" },
+    { "id": 2, "name": "Dự án 2" }
+  ],
+  "tasks": [
+    { "id": 1, "projectId": 1, "title": "Tác vụ 1", "status": "todo" },
+    { "id": 2, "projectId": 1, "title": "Tác vụ 2", "status": "doing" },
+    { "id": 3, "projectId": 2, "title": "Tác vụ 3", "status": "done" }
+  ]
+}
