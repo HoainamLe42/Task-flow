@@ -1,11 +1,85 @@
 {
-  "projects": [
-    { "id": 1, "name": "Dự án 1" },
-    { "id": 2, "name": "Dự án 2" }
-  ],
-  "tasks": [
-    { "id": 1, "projectId": 1, "title": "Tác vụ 1", "status": "todo" },
-    { "id": 2, "projectId": 1, "title": "Tác vụ 2", "status": "doing" },
-    { "id": 3, "projectId": 2, "title": "Tác vụ 3", "status": "done" }
-  ]
+    "projects": [
+        { "id": 1, "name": "Dự án A" },
+        { "id": 2, "name": "Dự án B" },
+        { "id": 3, "name": "Dự án C" },
+        { "id": 4, "name": "Dự án D" }
+    ],
+    "tasks": [
+        {
+            "id": 1,
+            "projectId": 1,
+            "title": "Phân tích yêu cầu",
+            "status": "todo"
+        },
+        {
+            "id": 2,
+            "projectId": 1,
+            "title": "Thiết kế giao diện",
+            "status": "doing"
+        },
+        {
+            "id": 3,
+            "projectId": 1,
+            "title": "Tạo API backend",
+            "status": "done"
+        },
+
+        {
+            "id": 4,
+            "projectId": 2,
+            "title": "Khảo sát thị trường",
+            "status": "todo"
+        },
+        {
+            "id": 5,
+            "projectId": 2,
+            "title": "Phát triển MVP",
+            "status": "doing"
+        },
+        {
+            "id": 6,
+            "projectId": 2,
+            "title": "Kiểm thử sản phẩm",
+            "status": "done"
+        },
+
+        {
+            "id": 7,
+            "projectId": 3,
+            "title": "Xây dựng kế hoạch",
+            "status": "todo"
+        },
+        {
+            "id": 8,
+            "projectId": 3,
+            "title": "Phát triển UI/UX",
+            "status": "doing"
+        },
+        {
+            "id": 9,
+            "projectId": 3,
+            "title": "Triển khai production",
+            "status": "done"
+        },
+
+        {
+            "id": 10,
+            "projectId": 4,
+            "title": "Nghiên cứu công nghệ",
+            "status": "todo"
+        },
+        {
+            "id": 11,
+            "projectId": 4,
+            "title": "Xây dựng API",
+            "status": "doing"
+        },
+        {
+            "id": 12,
+            "projectId": 4,
+            "title": "Hoàn thiện tài liệu",
+            "status": "done"
+        }
+    ]
 }

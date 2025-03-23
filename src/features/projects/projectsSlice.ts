@@ -40,6 +40,7 @@ const projectsSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
+
             .addCase(fetchProjects.fulfilled, (state, action) => {
                 state.loading = false;
                 state.projects = action.payload;
