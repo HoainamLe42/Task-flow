@@ -18,7 +18,7 @@ const initialState: TasksState = {
 
 export const fetchTasks = createAsyncThunk(
     'tasks/fetchTasks',
-    async (projectId: number) => {
+    async (projectId: string) => {
         const tasks = await getTasks(projectId);
         return tasks;
     },

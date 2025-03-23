@@ -6,14 +6,21 @@ import { usePathname } from 'next/navigation';
 import { sidebarItems } from '@/data/sidebarItems';
 import ProjectList from './Sidebar/ProjectList';
 import TaskList from './Sidebar/TaskList';
+import { Metadata } from 'next';
+import AuthSection from './Sidebar/AuthSection';
 
 // Images + Icons
+
+export const metadata: Metadata = {
+    title: 'Projects',
+    description: 'Ứng dụng quản lý dự án đơn giản',
+};
 
 const Sidebar = () => {
     const pathname = usePathname();
 
     return (
-        <aside className="w-[20%] py-6 px-5 border-r border-gray-300">
+        <aside className="flex flex-col justify-between w-[20%] py-6 px-5 border-r border-gray-300 overflow-hidden">
             {/* Logo */}
             <div className="flex items-center justify-center gap-3 text-2xl">
                 <img
@@ -24,9 +31,8 @@ const Sidebar = () => {
                 />
                 <span>TaskFlow</span>
             </div>
-
             {/* Nav */}
-            <nav className="mt-6">
+            <nav className="mt-2">
                 <ul className="flex flex-col">
                     {sidebarItems.map((nav) => (
                         <li key={nav.id}>
@@ -45,12 +51,12 @@ const Sidebar = () => {
                     ))}
                 </ul>
             </nav>
-
             {/* Projects */}
             <ProjectList />
-
             {/* Tasks */}
             <TaskList />
+            {/* Login / Logout */}
+            <AuthSection />
         </aside>
     );
 };
