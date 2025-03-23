@@ -1,13 +1,15 @@
-import type { Metadata } from 'next';
+'use client';
+
+// import type { Metadata } from 'next';
 import './globals.css';
 import Sidebar from '../components/Sidebar';
-import { store } from '../features/store';
 import { Provider } from 'react-redux';
+import { store } from '../features/store';
 
-export const metadata: Metadata = {
-    title: 'TaskFlow',
-    description: 'Ứng dụng quản lý dự án đơn giản',
-};
+// const metadata: Metadata = {
+//     title: 'TaskFlow',
+//     description: 'Ứng dụng quản lý dự án đơn giản',
+// };
 
 export default function RootLayout({
     children,
@@ -25,12 +27,12 @@ export default function RootLayout({
                 />
             </head>
             <body>
-                {/* <Provider store={store}> */}
-                <div className="flex h-screen">
-                    <Sidebar />
-                    <div>{children}</div>
-                </div>
-                {/* </Provider> */}
+                <Provider store={store}>
+                    <div className="flex h-screen">
+                        <Sidebar />
+                        <div>{children}</div>
+                    </div>
+                </Provider>
             </body>
         </html>
     );

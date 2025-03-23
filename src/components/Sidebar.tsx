@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { sidebarItems } from '@/data/sidebarItems';
 import ProjectList from './Sidebar/ProjectList';
+import TaskList from './Sidebar/TaskList';
 
 // Images + Icons
 
@@ -18,6 +19,7 @@ const Sidebar = () => {
                 <img
                     src="./logo.png"
                     alt="Logo"
+                    loading="lazy"
                     className="h-[36px] w-[36px] object-cover"
                 />
                 <span>TaskFlow</span>
@@ -44,8 +46,11 @@ const Sidebar = () => {
                 </ul>
             </nav>
 
-            {/* Project */}
+            {/* Projects */}
             <ProjectList />
+
+            {/* Tasks */}
+            <TaskList />
         </aside>
     );
 };
