@@ -1,80 +1,44 @@
-import { API_URL } from '@/lib/api';
-import { User, UserLogin } from '@/types/auth';
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { User } from '@/types/auth';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
+// Kiểm tra xem có đang ở client-side không
+const isClient = typeof window !== 'undefined';
+console.log(isClient);
+
+const getUserFromLocalStorage = () => {
+    if (isClient) {
+        const storedUser = localStorage.getItem('user');
+        return storedUser ? JSON.parse(storedUser) : null;
+    }
+    return null;
+};
 
 interface AuthState {
     user: User | null;
-    loading: boolean;
-    error: string | null;
 }
 
 const initialState: AuthState = {
-    user: null,
-    loading: false,
-    error: null,
+    user: isClient ? getUserFromLocalStorage() : null,
 };
-
-export const loginUser = createAsyncThunk(
-    'auth/loginUser',
-    async (
-        credentials: { email: string; password: string },
-        { rejectWithValue },
-    ) => {
-        try {
-            const response = await fetch(
-                `${API_URL}/users?email=${credentials.email}`,
-            );
-
-            if (!response.ok) {
-                throw new Error('Email chưa được đăng ký');
-            }
-            const user: UserLogin[] = await response.json();
-
-            if (!user[0].email.trim()) {
-                return rejectWithValue('Email không được để trống.');
-            }
-
-            if (
-                user.length === 0 ||
-                user[0].password !== credentials.password
-            ) {
-                return rejectWithValue('Email hoặc mật khẩu không đúng!');
-            }
-
-            // Lưu trữ thông tin người dùng và token
-            localStorage.setItem('user', JSON.stringify(user[0]));
-            console.log(`Đăng nhập thành công`);
-            return user[0];
-        } catch (error) {
-            return rejectWithValue('Lỗi kết nối!');
-        }
-    },
-);
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
+        login: (state, action: PayloadAction<User>) => {
+            state.user = action.payload;
+            if (isClient) {
+                localStorage.setItem('user', JSON.stringify(action.payload));
+            }
+        },
         logout: (state) => {
             state.user = null;
+            if (isClient) {
+                localStorage.removeItem('user');
+            }
         },
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(loginUser.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(loginUser.fulfilled, (state, action) => {
-                state.loading = false;
-                state.user = action.payload;
-            })
-            .addCase(loginUser.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload as string;
-            });
     },
 });
 
-export const { logout } = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;

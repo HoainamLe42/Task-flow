@@ -8,6 +8,8 @@ const TaskList = () => {
         (state: RootState) => state.tasks,
     );
 
+    const user = useSelector((state: RootState) => state.auth.user);
+
     console.log(tasks);
 
     return (
@@ -17,27 +19,35 @@ const TaskList = () => {
                 <SquarePlus className="w-5 h-5 text-blue-500 cursor-pointer" />
             </div>
 
-            {!selectedProjectId && (
+            {user && !selectedProjectId && (
                 <p className="p-3 text-gray-400 text-sm">
                     Chọn một dự án để xem tasks.
                 </p>
             )}
 
-            {/* Project-list */}
+            {/* Task-list */}
             <div className="max-h-40 overflow-y-auto">
-                {loading ? (
-                    <p>Loading...</p>
+                {user ? (
+                    <>
+                        {loading ? (
+                            <p>Loading...</p>
+                        ) : (
+                            <ul className="flex flex-col">
+                                {tasks.map((task) => (
+                                    <li
+                                        key={task.id}
+                                        className="py-2 px-3 text-gray-600 text-sm"
+                                    >
+                                        <p>{task.title}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </>
                 ) : (
-                    <ul className="flex flex-col">
-                        {tasks.map((task) => (
-                            <li
-                                key={task.id}
-                                className="py-2 px-3 text-gray-600 text-sm"
-                            >
-                                <p>{task.title}</p>
-                            </li>
-                        ))}
-                    </ul>
+                    <p className="text-gray-400 text-sm p-3">
+                        Vui lòng đăng nhập
+                    </p>
                 )}
             </div>
         </section>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface InputProps {
     label: string;
@@ -14,7 +14,7 @@ const InputCustom: React.FC<InputProps> = ({
     onChange,
 }) => {
     return (
-        <div className="relative border border-gray-300 rounded-lg h-12 flex items-center">
+        <div className="relative border border-gray-300 rounded-lg h-12 flex items-center w-full">
             {/* <label className="absolute top-1/2 left-1/2 transform -translate-x-1/2">\ */}
             <label
                 className={`absolute left-4 text-gray-500 capitalize transition-all duration-200 ${

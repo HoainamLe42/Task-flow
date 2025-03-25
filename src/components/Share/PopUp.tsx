@@ -1,5 +1,5 @@
 import { SquareX } from 'lucide-react';
-import React, { ReactNode, useState } from 'react';
+import React from 'react';
 
 interface PopUpProps {
     children: React.ReactNode;
@@ -17,7 +17,7 @@ const PopUp: React.FC<PopUpProps> = ({ children, isOpen, onClose }) => {
                 onClick={onClose}
                 className="fixed inset-0 z-[199] bg-black/50"
             ></div>
-            <div className="relative z-[200] h-[300px] min-w-[420px] rounded-md shadow-lg pt-10 py-3 px-4 text-center bg-white">
+            <div className="relative z-[200] min-w-[420px] rounded-md shadow-lg pt-10 py-3 px-4 text-center bg-white">
                 {children}
                 <button
                     onClick={onClose}
