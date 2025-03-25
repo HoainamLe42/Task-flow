@@ -4,7 +4,7 @@ import { getTasks } from './tasksApi';
 
 interface TasksState {
     tasks: Task[];
-    selectedProjectId: number | null;
+    selectedProjectId: string | null;
     loading: boolean;
     error: string | null;
 }
@@ -28,7 +28,7 @@ export const tasksSlice = createSlice({
     name: 'tasks',
     initialState,
     reducers: {
-        selectedProject: (state, action: PayloadAction<number>) => {
+        selectedProject: (state, action: PayloadAction<string>) => {
             state.selectedProjectId = action.payload;
         },
     },

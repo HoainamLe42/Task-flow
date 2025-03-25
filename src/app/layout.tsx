@@ -1,5 +1,9 @@
 'use client';
 
+import { Plus_Jakarta_Sans } from 'next/font/google';
+
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'] });
+
 // import type { Metadata } from 'next';
 import './globals.css';
 import Sidebar from '../components/Sidebar';
@@ -18,15 +22,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <head>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-                    rel="stylesheet"
-                />
-            </head>
-            <body>
+            <body className={plusJakartaSans.className}>
                 <Provider store={store}>
                     <div className="flex h-screen">
                         <Sidebar />
